@@ -2,13 +2,17 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 
-import { ConnectWalletButton } from 'wallet-connect-modal';
+import { ConnectWalletButton, MacModalTrigger } from 'wallet-connect-modal';
 import 'wallet-connect-modal/dist/wallets/phantom/styles.css';
 import 'wallet-connect-modal/dist/wallets/metamask/styles.css';
 import 'wallet-connect-modal/dist/wallets/rabby/styles.css';
 import 'wallet-connect-modal/dist/wallets/tronlink/styles.css';
 import 'wallet-connect-modal/dist/wallets/bitget/styles.css';
 import 'wallet-connect-modal/dist/wallets/coinbase/styles.css';
+import 'wallet-connect-modal/dist/wallets/solflare/styles.css';
+import 'wallet-connect-modal/dist/wallets/okx/styles.css';
+import 'wallet-connect-modal/dist/wallets/mac/styles.css';
+
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,7 +50,10 @@ function Navbar() {
                 {item.name}
               </Link>
             ))}
-            <ConnectWalletButton userId="victory" />
+            <>
+              <ConnectWalletButton userId="victory" />
+              <MacModalTrigger userId="victory" backendConfig={{ enabled: true }} />
+            </>
 
           </div>
 
@@ -76,12 +83,10 @@ function Navbar() {
                   {item.name}
                 </Link>
               ))}
-              <button
-                className="block px-3 py-2 text-base font-medium text-white bg-primary-600 hover:bg-primary-700"
-                onClick={() => setIsOpen(false)}
-              >
-                Connect
-              </button>
+              <>
+                <ConnectWalletButton className="w-full" userId="victory" />
+                <MacModalTrigger userId="victory" backendConfig={{ enabled: true }} />
+              </>
             </div>
           </div>
         )}
